@@ -15,7 +15,7 @@ that can cause a model to fail. This project asks three questions:
 3. Is that robustness genuine, or is the model simply learning to defeat one specific attack
    ("gradient masking")?
 
-This sits at the intersection of **AI, cybersecurity, and biomedical engineering** — a robustness
+This sits at the intersection of **AI, cybersecurity, and biomedical engineering** a robustness
 evaluation pipeline that could be applied to any clinical deep learning model before deployment.
 
 ## Dataset
