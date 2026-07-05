@@ -41,42 +41,48 @@ Full implementation: [`Adversarial_Robustness_Medical_Segmentation.ipynb`](./Adv
 
 ![Segmentation example](images/segmentation_example.png) -->
 
+
 **Standard model under FGSM attack** — Dice score drops as epsilon increases:
 
 ![FGSM Dice curve](images/fgsm_dice_curve.png) -->
 
-**FGSM Results:**
-
-![FGSM Results](images/fgsm_table.png) -->
-
-**FGSM Results:**
-
-![FGSM Results](images/fgsm_table_comparison.png) -->
 
 **Standard vs. adversarially trained model, under FGSM:**
 
 ![FGSM standard vs robust](images/fgsm_standard_vs_robust.png) -->
 
+
 **Standard vs. adversarially trained model, under the stronger PGD attack:**
 
 ![PGD standard vs robust](images/pgd_standard_vs_robust.png) -->
 
-**PGD Results:**
-
-![PGD Results](images/pgd_table.png) -->
 
 **Side-by-side FGSM vs. PGD comparison:**
 
 ![FGSM vs PGD full comparison](images/fgsm_vs_pgd_full_comparison.png) -->
 
-### Key finding
 
-*(Fill this in with your own numbers once you have run the notebook — for example:)*
 
-> The standard model's Dice score dropped from **X.XX** (clean) to **X.XX** under FGSM at epsilon = 0.2.
-> Adversarial training improved robustness under FGSM, raising Dice at epsilon = 0.2 from X.XX to X.XX.
-> However, under the stronger PGD attack, the robustness gap [narrowed / held up], suggesting the
-> adversarially trained model [shows signs of gradient masking / is genuinely more robust].
+### Key Findings & Adversarial Robustness Analysis
+
+> The standard model's Dice score dropped from **0.869** (clean) to **0.427** under FGSM at epsilon = 0.2.
+
+> **FGSM Results:**
+
+![FGSM Results](images/fgsm_table.png) -->
+
+> Adversarial training improved robustness under FGSM, raising Dice at epsilon = 0.2 from **0.427** to **0.681**.
+
+**FGSM Results:**
+
+![FGSM Results](images/fgsm_table_comparison.png) -->
+
+> However, under the stronger PGD attack, the robustness gap **narrowed**, suggesting the adversarially trained model **shows signs of gradient masking** (dropping to 0.040 under PGD at epsilon = 0.2, failing against iterative optimization attacks).
+
+**PGD Results:**
+
+![PGD Results](images/pgd_table.png) -->
+
 
 ## Tech Stack
 
@@ -98,3 +104,8 @@ Full implementation: [`Adversarial_Robustness_Medical_Segmentation.ipynb`](./Adv
 ├── images/                                             # result plots (add after running the notebook)
 └── README.md
 ```
+
+Author
+
+FATMANUR — M.Sc. student in Biomedical Engineering, working on deep learning for medical image
+segmentation.
