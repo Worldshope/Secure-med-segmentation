@@ -3,7 +3,7 @@ Adversarial attacks (FGSM/PGD) and robustness evaluation on UNet models for medi
 
 Projenin amacı: MONAI ile segmentasyon + adversarial robustness değerlendirmesi
 
-Kullanılan veri seti: Medical Segmentation Decathlon — Task04_Hippocampus
+Kullanılan veri seti: Medical Segmentation Decathlon - Task04_Hippocampus
 
 Elde edilen Dice skorları: Temiz vs. farklı epsilon değerleri
 
