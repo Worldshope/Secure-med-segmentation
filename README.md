@@ -1,13 +1,13 @@
 # Adversarial Robustness of Medical Image Segmentation Models
 
 A small research project evaluating how a deep learning segmentation model behaves under adversarial
-attacks, and whether adversarial training can make it more robust — validated against a stronger attack
+attacks, and whether adversarial training can make it more robust, validated against a stronger attack
 to rule out gradient masking.
 
 ## Motivation
 
 Medical imaging models are increasingly deployed in real clinical pipelines, but they are rarely tested
-against adversarial perturbations before deployment — small, often imperceptible changes to an input image
+against adversarial perturbations before deployment; small, often imperceptible changes to an input image
 that can cause a model to fail. This project asks three questions:
 
 1. How much does a segmentation model's performance degrade under an adversarial attack?
