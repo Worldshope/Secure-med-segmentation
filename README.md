@@ -1,20 +1,88 @@
-# Secure-med-segmentation
-Adversarial attacks (FGSM/PGD) and robustness evaluation on UNet models for medical image segmentation
+# Adversarial Robustness of Medical Image Segmentation Models
 
-Projenin amacı: MONAI ile segmentasyon + adversarial robustness değerlendirmesi
+A small research project evaluating how a deep learning segmentation model behaves under adversarial
+attacks, and whether adversarial training can make it more robust — validated against a stronger attack
+to rule out gradient masking.
 
-Kullanılan veri seti: Medical Segmentation Decathlon - Task04_Hippocampus
+## Motivation
 
-Elde edilen Dice skorları: Temiz vs. farklı epsilon değerleri
+Medical imaging models are increasingly deployed in real clinical pipelines, but they are rarely tested
+against adversarial perturbations before deployment — small, often imperceptible changes to an input image
+that can cause a model to fail. This project asks three questions:
 
-### Visual Comparison of the Attack
-Here is how the FGSM attack degrades the segmentation performance:
+1. How much does a segmentation model's performance degrade under an adversarial attack?
+2. Can adversarial training make the model more robust?
+3. Is that robustness genuine, or is the model simply learning to defeat one specific attack
+   ("gradient masking")?
 
-![Visual Comparison](fgsm_visual_comparison.png)
+This sits at the intersection of **AI, cybersecurity, and biomedical engineering** — a robustness
+evaluation pipeline that could be applied to any clinical deep learning model before deployment.
 
-### Dice Score Degradation Curve
-The chart below demonstrates the dramatic drop in Dice Score as adversarial perturbation (epsilon) increases:
+## Dataset
 
-![Dice Curve](fgsm_dice_curve.png)
+- **Medical Segmentation Decathlon — Task04_Hippocampus**
+- 3D MRI volumes, binary segmentation (hippocampus vs. background)
+- Chosen for its small size, which keeps the full pipeline fast to run end-to-end
 
-Özet: Model epsilon arttıkça performans kaybediyor, bu da klinik dağıtım öncesi adversarial robustness testinin önemini gösteriyor.
+## Method
+
+| Stage | Description |
+|---|---|
+| **1. Baseline model** | 3D UNet ([MONAI](https://monai.io/)) trained on clean data |
+| **2. FGSM attack** | Fast Gradient Sign Method — single-step attack, evaluated across a range of perturbation strengths (epsilon) |
+| **3. Adversarial training** | A second model trained from scratch on a mix of clean and FGSM-perturbed images at every step |
+| **4. PGD validation** | Projected Gradient Descent — a stronger, iterative attack used to check whether the adversarially trained model is genuinely more robust, or only appears robust against FGSM |
+
+Full implementation: [`Adversarial_Robustness_Medical_Segmentation.ipynb`](./Adversarial_Robustness_Medical_Segmentation.ipynb)
+
+## Results
+
+**Segmentation example** (MRI slice, ground truth, and model prediction):
+
+![Segmentation example](images/segmentation_example.png) -->
+
+**Standard model under FGSM attack** — Dice score drops as epsilon increases:
+
+![FGSM Dice curve](images/fgsm_dice_curve.png) -->
+
+**Standard vs. adversarially trained model, under FGSM:**
+
+![FGSM standard vs robust](images/fgsm_standard_vs_robust.png) -->
+
+**Standard vs. adversarially trained model, under the stronger PGD attack:**
+
+![PGD standard vs robust](images/pgd_standard_vs_robust.png) -->
+
+**Side-by-side FGSM vs. PGD comparison:**
+
+![FGSM vs PGD full comparison](images/fgsm_vs_pgd_full_comparison.png) -->
+
+### Key finding
+
+*(Fill this in with your own numbers once you have run the notebook — for example:)*
+
+> The standard model's Dice score dropped from **X.XX** (clean) to **X.XX** under FGSM at epsilon = 0.2.
+> Adversarial training improved robustness under FGSM, raising Dice at epsilon = 0.2 from X.XX to X.XX.
+> However, under the stronger PGD attack, the robustness gap [narrowed / held up], suggesting the
+> adversarially trained model [shows signs of gradient masking / is genuinely more robust].
+
+## Tech Stack
+
+- **PyTorch** + **[MONAI](https://monai.io/)** — 3D medical image segmentation
+- **FGSM & PGD** — adversarial attack implementations (from scratch)
+- Google Colab (GPU runtime)
+
+## How to Run
+
+1. Open [`Adversarial_Robustness_Medical_Segmentation.ipynb`](./Adversarial_Robustness_Medical_Segmentation.ipynb) in Google Colab.
+2. Set the runtime to GPU (**Runtime > Change runtime type > T4 GPU**).
+3. Run all cells in order. Total runtime: ~45–60 minutes.
+
+## Project Structure
+
+```
+.
+├── Adversarial_Robustness_Medical_Segmentation.ipynb   # full pipeline: training, FGSM, adversarial training, PGD
+├── images/                                             # result plots (add after running the notebook)
+└── README.md
+```
