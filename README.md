@@ -45,6 +45,14 @@ Full implementation: [`Adversarial_Robustness_Medical_Segmentation.ipynb`](./Adv
 
 ![FGSM Dice curve](images/fgsm_dice_curve.png) -->
 
+**FGSM Results:**
+
+![FGSM Results](images/fgsm_table.png) -->
+
+**FGSM Results:**
+
+![FGSM Results](images/fgsm_table_comparison.png) -->
+
 **Standard vs. adversarially trained model, under FGSM:**
 
 ![FGSM standard vs robust](images/fgsm_standard_vs_robust.png) -->
@@ -52,6 +60,10 @@ Full implementation: [`Adversarial_Robustness_Medical_Segmentation.ipynb`](./Adv
 **Standard vs. adversarially trained model, under the stronger PGD attack:**
 
 ![PGD standard vs robust](images/pgd_standard_vs_robust.png) -->
+
+**PGD Results:**
+
+![PGD Results](images/pgd_table.png) -->
 
 **Side-by-side FGSM vs. PGD comparison:**
 
