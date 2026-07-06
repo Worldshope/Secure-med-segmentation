@@ -39,49 +39,64 @@ Full implementation: [`Adversarial_Robustness_Medical_Segmentation.ipynb`](./Adv
 
 **Segmentation example** (MRI slice, ground truth, and model prediction):
 
-![Segmentation example](images/segmentation_example.png) -->
+![Segmentation example](images/image.png) 
+
 
 
 **Standard model under FGSM attack** — Dice score drops as epsilon increases:
 
-![FGSM Dice curve](images/fgsm_dice_curve.png) -->
+![FGSM Dice curve](images/Standard_Model_Under_FGSM_Attack.png) 
+
 
 
 **Standard vs. adversarially trained model, under FGSM:**
 
-![FGSM standard vs robust](images/fgsm_standard_vs_robust.png) -->
+![FGSM standard vs robust](images/Standard_vs_Adversarially_Trained_Model_FGSM.png) 
+
 
 
 **Standard vs. adversarially trained model, under the stronger PGD attack:**
 
-![PGD standard vs robust](images/pgd_standard_vs_robust.png) -->
+![PGD standard vs robust](images/Standard_vs_Adversarially_Trained_Model_PGD.png) 
+
 
 
 **Side-by-side FGSM vs. PGD comparison:**
 
-![FGSM vs PGD full comparison](images/fgsm_vs_pgd_full_comparison.png) -->
+![FGSM vs PGD full comparison](images/fgsm_vs_pgd_full_comparison.png) 
+
+
+
+**Three way robustness comparison:**
+
+![FGSM vs PGD full comparison](images/three_way_robustness_comparison.png) 
+
 
 
 
 ### Key Findings & Adversarial Robustness Analysis
 
-> The standard model's Dice score dropped from **0.869** (clean) to **0.427** under FGSM at epsilon = 0.2.
+> The standard model's Dice score dropped from **0.8680** (clean) to **0.3867** under FGSM at epsilon = 0.2.
 
 > **FGSM Results:**
 
-![FGSM Results](images/fgsm_table.png) -->
+![FGSM Results](images/fgsm_results.png) 
 
-> Adversarial training improved robustness under FGSM, raising Dice at epsilon = 0.2 from **0.427** to **0.681**.
+
+> Adversarial training improved robustness under FGSM, raising Dice at epsilon = 0.2 from **0.387** to **0.677**.
 
 **FGSM Results:**
 
-![FGSM Results](images/fgsm_table_comparison.png) -->
+![FGSM Results](images/robust_fgsm_results.png) 
 
-> However, under the stronger PGD attack, the robustness gap **narrowed**, suggesting the adversarially trained model **shows signs of gradient masking** (dropping to 0.040 under PGD at epsilon = 0.2, failing against iterative optimization attacks).
+
+> However, under the stronger PGD attack, the robustness gap **narrowed**, suggesting the adversarially trained model **shows signs of gradient masking** (dropping to 0.046 under PGD at epsilon = 0.2, failing against iterative optimization attacks).
 
 **PGD Results:**
 
-![PGD Results](images/pgd_table.png) -->
+![PGD Results](images/pgd_results.png) 
+
+
 
 
 ## Tech Stack
